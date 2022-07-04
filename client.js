@@ -46,12 +46,14 @@ const employees = [
  * @param {*} employees 
  */
 
+// let bonusData = document.querySelector(".bonus-data");
 
  function calculateBonus(cohortArray){
+  // let empBonus = "";
   
   for(employeeObj of cohortArray){
     console.log('Calculating bonus for', employeeObj.name);
-    
+    // empBonus += "<li>" + newObject + "</li>";
     let bonusPercent = 0;
     
     if (employeeObj.rating <= 2) {
@@ -80,15 +82,16 @@ const employees = [
     let bonusAmount = parseInt(employeeObj.annualSalary) * bonusPercent;
 
     let totalComp = Math.ceil(parseInt(employeeObj.annualSalary) + bonusAmount);
-
-    console.log({
-
+    let newObject = {
       name: employeeObj.name,
       bonusPercent: bonusPercent,
       bonusAmount: bonusAmount,
       totalComp: totalComp,
-    });
+    }
+    console.log(newObject);
+    
   }
+  // bonusData.innerHTML = empBonus;
 };
 
 
