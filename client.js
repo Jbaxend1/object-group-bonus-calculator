@@ -47,45 +47,49 @@ const employees = [
  */
 
 
- function calculateBonus(employeeObj, cohortArray){
-
+ function calculateBonus(cohortArray){
   
-  let bonusPercent = 0;
- 
-  console.log('Calculating bonus for', employeeObj.name);
-  if (employeeObj.rating <= 2) {
-     console.log('No bonus', employeeObj.name);
-      bonusPercent = 0;
-  } else if (employeeObj.reviewRating === 3) {
-      bonusPercent += 0.04;
-  } else if (employeeObj.reviewRating === 4) {
-      bonusPercent += 0.06;
-  } else if (employeeObj.reviewRating === 5) {
-      bonusPercent += 0.1;
-  } 
-
-  if(employeeObj.employeeNumber.length === 4){
-      bonusPercent += 0.05;}
-
-  if(parseInt(employeeObj.annualSalary) > 65000){
-  bonusPercent -= 0.01;}
-  
-  if(bonusPercent > .13){
-    bonusPercent = .13;
-  } else if( bonusPercent <= 0){
-    bonusPercent = 0;
-  }
-
-  let bonusAmount = parseInt(employeeObj.annualSalary) * bonusPercent;
-  let totalComp = Math.ceil(parseInt(employeeObj.annualSalary) + bonusAmount);
-
-  return {
+  for(employeeObj of cohortArray){
+    console.log('Calculating bonus for', employeeObj.name);
     
-    name: employeeObj.name,
-    bonusPercent: bonusPercent,
-    bonusAmount: bonusAmount,
-    totalComp: totalComp,
- }
+    let bonusPercent = 0;
+    
+    if (employeeObj.rating <= 2) {
+      console.log('No bonus', employeeObj.name);
+        bonusPercent = 0;
+    } else if (employeeObj.reviewRating === 3) {
+        bonusPercent += 0.04;
+    } else if (employeeObj.reviewRating === 4) {
+        bonusPercent += 0.06;
+    } else if (employeeObj.reviewRating === 5) {
+        bonusPercent += 0.1;
+    } ;
+    
+    if(employeeObj.employeeNumber.length === 4){
+        bonusPercent += 0.05;}
+
+    if(parseInt(employeeObj.annualSalary) > 65000){
+      bonusPercent -= 0.01;}
+    
+    if(bonusPercent > .13){
+      bonusPercent = .13;
+    } else if( bonusPercent <= 0){
+      bonusPercent = 0;
+    } 
+
+    let bonusAmount = parseInt(employeeObj.annualSalary) * bonusPercent;
+
+    let totalComp = Math.ceil(parseInt(employeeObj.annualSalary) + bonusAmount);
+
+    console.log({
+
+      name: employeeObj.name,
+      bonusPercent: bonusPercent,
+      bonusAmount: bonusAmount,
+      totalComp: totalComp,
+    });
+  }
 };
 
- console.log(calculateBonus(employees[2]));
+
+calculateBonus(employees);
